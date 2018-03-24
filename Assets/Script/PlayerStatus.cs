@@ -14,7 +14,6 @@ public class PlayerStatus : MonoBehaviour
     public float defend;
     public float speed;
     public float jumpForce;
-    public GameObject deathParticlePrefab;
     public bool canDoubleJump;
 
     public float deathTime = 1f;
@@ -32,7 +31,7 @@ public class PlayerStatus : MonoBehaviour
             gameObject.SetActive(false);
 
             var deathParticles = (GameObject)Instantiate(
-                deathParticlePrefab,
+                PrefabManager.instance.deathPrefab,
                 gameObject.transform.position,
                 gameObject.transform.rotation);
             life--;
