@@ -10,6 +10,7 @@ public class PlayerStatus : MonoBehaviour
     public float health;
     public float bullet_damage;
     public float bullet_speed;
+    public float fire_rate;
     public float defend;
     public float speed;
     public float jumpForce;
@@ -18,8 +19,6 @@ public class PlayerStatus : MonoBehaviour
 
     public float deathTime = 1f;
     private float deathTimeRemain;
-
-    private GameObject[] allBullets;
 
     void Awake()
     {
@@ -38,11 +37,6 @@ public class PlayerStatus : MonoBehaviour
                 gameObject.transform.rotation);
             life--;
             health = fullhealth;
-            allBullets = GameObject.FindGameObjectsWithTag("bullet");
-            for (var i = 0; i < allBullets.Length; i++)
-            {
-                Destroy(allBullets[i]);
-            }
 
             gameObject.SetActive(true);
         }
