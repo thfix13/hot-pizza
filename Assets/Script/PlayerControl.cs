@@ -66,6 +66,17 @@ public class PlayerControl : MonoBehaviour {
         if (Input.GetKeyUp(leftButton)) leftClick = false;
         if (Input.GetKeyDown(rightButton)) rightClick = true;
         if (Input.GetKeyUp(rightButton)) rightClick = false;
+
+        if (leftClick)
+        {
+            faceLeft = true;
+            rb2d.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+        else if (rightClick)
+        {
+            faceLeft = false;
+            rb2d.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 
     void FixedUpdate()

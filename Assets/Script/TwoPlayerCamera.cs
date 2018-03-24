@@ -4,6 +4,7 @@ using UnityEngine;
 
 //credit code from :
 //https://answers.unity.com/questions/674225/2d-camera-to-follow-two-players.html
+//https://answers.unity.com/questions/29183/2d-camera-smooth-follow.html
 
 public class TwoPlayerCamera : MonoBehaviour {
 
