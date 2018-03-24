@@ -27,6 +27,7 @@ public class PlayerStatus : MonoBehaviour
         deathTimeRemain = 0;
         armor = 0;
         health_regen = 0;
+        loadoutSelection = Selection.P1selection;
     }
 
     void Update()
