@@ -95,14 +95,6 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
-    void OnCollisionExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("platform"))
-        {
-            grounded = false;
-        }
-    }
-
     void Fire()
     {
         var bullet = (GameObject)Instantiate(
