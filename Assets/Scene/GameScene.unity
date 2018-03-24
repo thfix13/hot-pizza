@@ -393,6 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 3
+  fullhealth: 100
   health: 100
   bullet_damage: 10
   bullet_speed: 10
@@ -802,6 +803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 3
+  fullhealth: 100
   health: 100
   bullet_damage: 10
   bullet_speed: 10

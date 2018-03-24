@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour {
 
     public int life;
+    public float fullhealth;
     public float health;
     public float bullet_damage;
     public float bullet_speed;
