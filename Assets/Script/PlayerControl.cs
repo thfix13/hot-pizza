@@ -129,7 +129,6 @@ public class PlayerControl : MonoBehaviour {
 
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletVelocity, 0);
         bullet.GetComponent<BulletStatus>().bulletDamage = status.bullet_damage;
-
-        Destroy(bullet, 2.0f);
+        bullet.GetComponent<BulletStatus>().lifespan = 2.0f;
     }
 }
