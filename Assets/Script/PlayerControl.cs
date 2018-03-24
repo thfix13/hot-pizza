@@ -20,6 +20,7 @@ public class PlayerControl : MonoBehaviour {
     public KeyCode jumpButton;
     public KeyCode leftButton;
     public KeyCode rightButton;
+    public KeyCode downButton;
     public KeyCode shootButton;
 
     //user define player values
@@ -32,6 +33,11 @@ public class PlayerControl : MonoBehaviour {
     public Transform bulletSpawn;
 
     private bool grounded = false;
+
+    //public bool IsPlayerOne;
+    private bool falling = false;
+    private float fallTime = 0.0f;
+    private const float MIN_FALL_TIME = 0.3f;
 
     void Start()
     {
@@ -80,6 +86,23 @@ public class PlayerControl : MonoBehaviour {
                 faceLeft = false;
                 rb2d.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
+
+            // drop from platform
+            if (Input.GetKeyDown(downButton)) {
+                falling = true;
+                gameObject.layer = 9;
+                //rb2d.simulated = false;
+                //rb2d.simulated = true;
+                fallTime += Time.deltaTime;
+            } else if (falling && fallTime < MIN_FALL_TIME) {
+                fallTime += Time.deltaTime;
+            } else if (falling) {
+                falling = false;
+                gameObject.layer = 8;
+                //rb2d.simulated = false;
+                //rb2d.simulated = true;
+                fallTime = 0.0f;
+            }
         }
     }
 
@@ -103,7 +126,7 @@ public class PlayerControl : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("platform") || other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("platform") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("ground"))
         {
             grounded = true;
             doubleJump = true;
