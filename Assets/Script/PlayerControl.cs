@@ -106,6 +106,14 @@ public class PlayerControl : MonoBehaviour {
             doubleJump = true;
         }
 
+        if (other.gameObject.CompareTag("bullet"))
+        {
+            if (other.gameObject.name.Substring(0, 8) != bulletPrefab.name.Substring(0, 8))
+            {
+                status.health -= other.gameObject.GetComponent<BulletStatus>().bulletDamage;
+                Destroy(other.gameObject);
+            }
+        }
         /*if (other.gameObject.CompareTag("bullet"))
         {
             if (!(other.gameObject.name.Substring(0, 2) == bulletPrefab.name.Substring(0, 2)))
@@ -130,6 +138,7 @@ public class PlayerControl : MonoBehaviour {
             bulletVelocity = status.bullet_speed;
 
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletVelocity, 0);
+        bullet.GetComponent<BulletStatus>().bulletDamage = status.bullet_damage;
 
         Destroy(bullet, 2.0f);
     }
