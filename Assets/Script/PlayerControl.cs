@@ -23,23 +23,20 @@ public class PlayerControl : MonoBehaviour {
     //user define player values
     public Rigidbody2D rb2d;
     private PlayerStatus status;
-    public float speed;
-    public float jumpForce;
     public bool faceLeft;
 
     //user define bullet values
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
 
-    //user define / future triggerable
-    public bool canDoubleJump;
-
     private bool grounded = false;
 
     void Start()
     {
         //rb2d = GetComponent<Rigidbody2D>();
+        //freeze the rotation of the object
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //getting the playerstatus 
         status = GetComponent<PlayerStatus>();
     }
 
@@ -50,13 +47,14 @@ public class PlayerControl : MonoBehaviour {
             Fire();
         }
 
+        //checking if player can jump
         if (Input.GetKeyDown(jumpButton))
         {
             if (grounded)
             {
                 jump = true;
             }
-            else if (canDoubleJump && doubleJump)
+            else if (status.canDoubleJump && doubleJump)
             {
                 jump = true;
                 doubleJump = false;
@@ -86,12 +84,12 @@ public class PlayerControl : MonoBehaviour {
         if (leftClick) moveHorizontal--;
         if (rightClick) moveHorizontal++;
 
-        Vector2 movement = new Vector2(moveHorizontal * speed, rb2d.velocity.y);
+        Vector2 movement = new Vector2(moveHorizontal * status.speed, rb2d.velocity.y);
         rb2d.velocity = movement;
 
         if (jump)
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, status.jumpForce));
 
             jump = false;
             grounded = false;
@@ -114,14 +112,6 @@ public class PlayerControl : MonoBehaviour {
                 Destroy(other.gameObject);
             }
         }
-        /*if (other.gameObject.CompareTag("bullet"))
-        {
-            if (!(other.gameObject.name.Substring(0, 2) == bulletPrefab.name.Substring(0, 2)))
-            {
-                status.health -= bulletDamage;
-                Destroy(other.gameObject);
-            }
-        }*/
     }
 
     void Fire()

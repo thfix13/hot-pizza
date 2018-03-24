@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212477636374521192}
   - component: {fileID: 58545769775354690}
   - component: {fileID: 50245860165940684}
+  - component: {fileID: 114550380927804346}
   m_Layer: 0
   m_Name: peperonni
   m_TagString: bullet
@@ -77,6 +78,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.29
+--- !u!114 &114550380927804346
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1174754931447846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1ed7c7b9f81f3468092bec18b8ab35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletDamage: 0
 --- !u!212 &212477636374521192
 SpriteRenderer:
   m_ObjectHideFlags: 1

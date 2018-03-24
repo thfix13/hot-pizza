@@ -377,16 +377,10 @@ MonoBehaviour:
   rightButton: 108
   shootButton: 109
   rb2d: {fileID: 622135875}
-  speed: 10
-  jumpForce: 1500
   faceLeft: 1
-  bulletSpeed: 10
-  bulletDamage: 10
   bulletPrefab: {fileID: 1174754931447846, guid: 35b52be1ce55f4b4ebfef72905fd9f1d,
     type: 2}
   bulletSpawn: {fileID: 714215630}
-  HP: 100
-  canDoubleJump: 0
 --- !u!114 &622135879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,10 +392,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6194955825b03429a49d161e6a2d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 3
   health: 100
-  damage: 10
+  bullet_damage: 10
+  bullet_speed: 10
   defend: 2
   speed: 10
+  jumpForce: 1500
+  canDoubleJump: 0
 --- !u!1 &625310526
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,16 +786,10 @@ MonoBehaviour:
   rightButton: 100
   shootButton: 99
   rb2d: {fileID: 1096082393}
-  speed: 10
-  jumpForce: 1500
   faceLeft: 0
-  bulletSpeed: 10
-  bulletDamage: 10
   bulletPrefab: {fileID: 1180340491296396, guid: 11c605956de069541855414ddfc75449,
     type: 2}
   bulletSpawn: {fileID: 2035018255}
-  HP: 100
-  canDoubleJump: 0
 --- !u!114 &1096082397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,10 +801,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6194955825b03429a49d161e6a2d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 3
   health: 100
-  damage: 10
+  bullet_damage: 10
+  bullet_speed: 10
   defend: 2
   speed: 10
+  jumpForce: 1500
+  canDoubleJump: 0
 --- !u!1001 &1556007120
 Prefab:
   m_ObjectHideFlags: 0
