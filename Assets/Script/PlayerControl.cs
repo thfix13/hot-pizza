@@ -28,8 +28,10 @@ public class PlayerControl : MonoBehaviour {
 
     //user define bullet values
     public float bulletSpeed;
+    public float bulletDamage;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
+    public float HP = 100;
 
     //user define / future triggerable
     public bool canDoubleJump;
@@ -44,6 +46,11 @@ public class PlayerControl : MonoBehaviour {
 
     void Update()
     {
+        if (HP <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+
         if (Input.GetKeyDown(shootButton))
         {
             Fire();
@@ -99,10 +106,19 @@ public class PlayerControl : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("platform"))
+        if (other.gameObject.CompareTag("platform") || other.gameObject.CompareTag("Player"))
         {
             grounded = true;
             doubleJump = true;
+        }
+
+        if (other.gameObject.CompareTag("bullet"))
+        {
+            if (!(other.gameObject.name.Substring(0, 2) == bulletPrefab.name.Substring(0, 2)))
+            {
+                HP -= bulletDamage;
+                Destroy(other.gameObject);
+            }
         }
     }
 
