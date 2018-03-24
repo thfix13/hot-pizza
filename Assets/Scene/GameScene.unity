@@ -469,14 +469,16 @@ MonoBehaviour:
   life: 3
   fullhealth: 100
   health: 100
+  health_regen: 0
   bullet_damage: 10
   bullet_speed: 10
-  defend: 2
+  armor: 0
   speed: 10
   jumpForce: 1500
   deathParticlePrefab: {fileID: 1084096300711396, guid: b890fc5076808ad4da093e91ebe7c948,
     type: 2}
   canDoubleJump: 0
+  loadoutSelection: {x: 0, y: 0}
   deathTime: 1
 --- !u!1 &625310526
 GameObject:
@@ -668,6 +670,46 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.29
+--- !u!1 &848319058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 848319060}
+  - component: {fileID: 848319059}
+  m_Layer: 0
+  m_Name: Cursor Script
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &848319059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 848319058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e8dfe6c1b5e48b3924961926a4d225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &848319060
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 848319058}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.8413863, y: 8.878022, z: -0.22082442}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &934415412
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,14 +959,16 @@ MonoBehaviour:
   life: 3
   fullhealth: 100
   health: 100
+  health_regen: 0
   bullet_damage: 10
   bullet_speed: 10
-  defend: 2
+  armor: 0
   speed: 10
   jumpForce: 1500
   deathParticlePrefab: {fileID: 1084096300711396, guid: b890fc5076808ad4da093e91ebe7c948,
     type: 2}
   canDoubleJump: 0
+  loadoutSelection: {x: 0, y: 0}
   deathTime: 1
 --- !u!1 &1197536694
 GameObject:
