@@ -14,8 +14,6 @@ public class PlayerControl : MonoBehaviour {
     [HideInInspector]
     public bool rightClick = false;
     [HideInInspector]
-    public bool shootClick = false;
-    [HideInInspector]
     public bool activated = true;
 
     //button define for this player
@@ -32,7 +30,6 @@ public class PlayerControl : MonoBehaviour {
     //user define bullet values
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
-    private float bullet_fire_count;
 
     private bool grounded = false;
 
@@ -43,14 +40,17 @@ public class PlayerControl : MonoBehaviour {
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
         //getting the playerstatus 
         status = GetComponent<PlayerStatus>();
-
-        bullet_fire_count = 0;
     }
 
     void Update()
     {
         if (activated)
         {
+            if (Input.GetKeyDown(shootButton))
+            {
+                Fire();
+            }
+
             //checking if player can jump
             if (Input.GetKeyDown(jumpButton))
             {
@@ -69,8 +69,6 @@ public class PlayerControl : MonoBehaviour {
             if (Input.GetKeyUp(leftButton)) leftClick = false;
             if (Input.GetKeyDown(rightButton)) rightClick = true;
             if (Input.GetKeyUp(rightButton)) rightClick = false;
-            if (Input.GetKeyDown(shootButton)) shootClick = true;
-            if (Input.GetKeyUp(shootButton)) shootClick = false;
 
             if (leftClick)
             {
@@ -100,20 +98,6 @@ public class PlayerControl : MonoBehaviour {
 
             jump = false;
             grounded = false;
-        }
-
-        //shooting bullet according to fire rate
-        if (bullet_fire_count <= 0)
-        {
-            if (shootClick)
-            {
-                Fire();
-                bullet_fire_count = status.fire_rate;
-            }
-        }
-        else
-        {
-            bullet_fire_count -= Time.deltaTime;
         }
     }
 
