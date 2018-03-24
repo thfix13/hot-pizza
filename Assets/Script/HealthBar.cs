@@ -44,7 +44,7 @@ public class HealthBar : MonoBehaviour
 
     void Update()
     {
-        if (player1) barDisplay1 = player1.GetComponent<PlayerControl>().HP / 100;
-        if (player2) barDisplay2 = player2.GetComponent<PlayerControl>().HP / 100;
+        if (player1) barDisplay1 = player1.GetComponent<PlayerStatus>().health / 100;
+        if (player2) barDisplay2 = player2.GetComponent<PlayerStatus>().health / 100;
     }
 }

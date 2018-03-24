@@ -22,16 +22,14 @@ public class PlayerControl : MonoBehaviour {
 
     //user define player values
     public Rigidbody2D rb2d;
+    private PlayerStatus status;
     public float speed;
     public float jumpForce;
     public bool faceLeft;
 
     //user define bullet values
-    public float bulletSpeed;
-    public float bulletDamage;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
-    public float HP = 100;
 
     //user define / future triggerable
     public bool canDoubleJump;
@@ -42,15 +40,11 @@ public class PlayerControl : MonoBehaviour {
     {
         //rb2d = GetComponent<Rigidbody2D>();
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+        status = GetComponent<PlayerStatus>();
     }
 
     void Update()
     {
-        if (HP <= 0)
-        {
-            gameObject.SetActive(false);
-        }
-
         if (Input.GetKeyDown(shootButton))
         {
             Fire();
@@ -112,14 +106,14 @@ public class PlayerControl : MonoBehaviour {
             doubleJump = true;
         }
 
-        if (other.gameObject.CompareTag("bullet"))
+        /*if (other.gameObject.CompareTag("bullet"))
         {
             if (!(other.gameObject.name.Substring(0, 2) == bulletPrefab.name.Substring(0, 2)))
             {
-                HP -= bulletDamage;
+                status.health -= bulletDamage;
                 Destroy(other.gameObject);
             }
-        }
+        }*/
     }
 
     void Fire()
@@ -131,9 +125,9 @@ public class PlayerControl : MonoBehaviour {
 
         float bulletVelocity;
         if (faceLeft)
-            bulletVelocity = -bulletSpeed;
+            bulletVelocity = -status.bullet_speed;
         else
-            bulletVelocity = bulletSpeed;
+            bulletVelocity = status.bullet_speed;
 
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletVelocity, 0);
 
