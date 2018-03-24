@@ -189,6 +189,10 @@ MonoBehaviour:
   pos1: {x: 20, y: 40}
   pos2: {x: 520, y: 40}
   size: {x: 300, y: 20}
+  gameOverPanel: {fileID: 0}
+  gameOverText: {fileID: 0}
+  boxSize: 0
+  boxGap: 0
 --- !u!114 &503209355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,6 +376,7 @@ MonoBehaviour:
   doubleJump: 0
   leftClick: 0
   rightClick: 0
+  activated: 1
   jumpButton: 105
   leftButton: 106
   rightButton: 108
@@ -400,6 +405,8 @@ MonoBehaviour:
   defend: 2
   speed: 10
   jumpForce: 1500
+  deathParticlePrefab: {fileID: 1084096300711396, guid: b890fc5076808ad4da093e91ebe7c948,
+    type: 2}
   canDoubleJump: 0
 --- !u!1 &625310526
 GameObject:
@@ -782,6 +789,7 @@ MonoBehaviour:
   doubleJump: 0
   leftClick: 0
   rightClick: 0
+  activated: 1
   jumpButton: 119
   leftButton: 97
   rightButton: 100
@@ -810,6 +818,8 @@ MonoBehaviour:
   defend: 2
   speed: 10
   jumpForce: 1500
+  deathParticlePrefab: {fileID: 1084096300711396, guid: b890fc5076808ad4da093e91ebe7c948,
+    type: 2}
   canDoubleJump: 0
 --- !u!1001 &1556007120
 Prefab:

@@ -13,6 +13,8 @@ public class PlayerControl : MonoBehaviour {
     public bool leftClick = false;
     [HideInInspector]
     public bool rightClick = false;
+    [HideInInspector]
+    public bool activated = true;
 
     //button define for this player
     public KeyCode jumpButton;
@@ -42,39 +44,42 @@ public class PlayerControl : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(shootButton))
+        if (activated)
         {
-            Fire();
-        }
-
-        //checking if player can jump
-        if (Input.GetKeyDown(jumpButton))
-        {
-            if (grounded)
+            if (Input.GetKeyDown(shootButton))
             {
-                jump = true;
+                Fire();
             }
-            else if (status.canDoubleJump && doubleJump)
+
+            //checking if player can jump
+            if (Input.GetKeyDown(jumpButton))
             {
-                jump = true;
-                doubleJump = false;
+                if (grounded)
+                {
+                    jump = true;
+                }
+                else if (status.canDoubleJump && doubleJump)
+                {
+                    jump = true;
+                    doubleJump = false;
+                }
             }
-        }
 
-        if (Input.GetKeyDown(leftButton)) leftClick = true;
-        if (Input.GetKeyUp(leftButton)) leftClick = false;
-        if (Input.GetKeyDown(rightButton)) rightClick = true;
-        if (Input.GetKeyUp(rightButton)) rightClick = false;
+            if (Input.GetKeyDown(leftButton)) leftClick = true;
+            if (Input.GetKeyUp(leftButton)) leftClick = false;
+            if (Input.GetKeyDown(rightButton)) rightClick = true;
+            if (Input.GetKeyUp(rightButton)) rightClick = false;
 
-        if (leftClick)
-        {
-            faceLeft = true;
-            rb2d.transform.localRotation = Quaternion.Euler(0, 180, 0);
-        }
-        else if (rightClick)
-        {
-            faceLeft = false;
-            rb2d.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            if (leftClick)
+            {
+                faceLeft = true;
+                rb2d.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+            else if (rightClick)
+            {
+                faceLeft = false;
+                rb2d.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
         }
     }
 
