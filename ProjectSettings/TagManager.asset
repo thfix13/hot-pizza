@@ -8,6 +8,7 @@ TagManager:
   - bullet
   - wall
   - ground
+  - camera bounds
   layers:
   - Default
   - TransparentFX
