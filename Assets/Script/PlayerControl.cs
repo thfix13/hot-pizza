@@ -14,6 +14,8 @@ public class PlayerControl : MonoBehaviour {
     [HideInInspector]
     public bool rightClick = false;
     [HideInInspector]
+    public bool shootClick = false;
+    [HideInInspector]
     public bool activated = true;
 
     //button define for this player
@@ -31,6 +33,7 @@ public class PlayerControl : MonoBehaviour {
     //user define bullet values
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
+    public float bullet_rate_count;
 
     public GameObject hitFXPrefab;
 
@@ -53,17 +56,14 @@ public class PlayerControl : MonoBehaviour {
         //getting the playerstatus 
         status = GetComponent<PlayerStatus>();
         GetComponent<AudioSource>().playOnAwake = false;
+
+        bullet_rate_count = 0;
     }
 
     void Update()
     {
         if (activated)
         {
-            if (Input.GetKeyDown(shootButton))
-            {
-                Fire();
-            }
-
             //checking if player can jump
             if (Input.GetKeyDown(jumpButton))
             {
@@ -82,6 +82,9 @@ public class PlayerControl : MonoBehaviour {
             if (Input.GetKeyUp(leftButton)) leftClick = false;
             if (Input.GetKeyDown(rightButton)) rightClick = true;
             if (Input.GetKeyUp(rightButton)) rightClick = false;
+            if (Input.GetKeyDown(shootButton)) shootClick = true;
+            if (Input.GetKeyUp(shootButton)) shootClick = false;
+            
 
             if (leftClick)
             {
@@ -114,6 +117,20 @@ public class PlayerControl : MonoBehaviour {
 
     void FixedUpdate()
     {
+        //shooting depends on the fire rate
+        if (bullet_rate_count <= 0)
+        {
+            if (shootClick)
+            {
+                Fire();
+                bullet_rate_count = status.bullet_fire_rate;
+            }
+        }
+        else
+        {
+            bullet_rate_count -= Time.deltaTime;
+        }
+
         float moveHorizontal = 0;
         if (leftClick)
         {

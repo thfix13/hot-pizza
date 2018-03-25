@@ -11,6 +11,7 @@ public class PlayerStatus : MonoBehaviour
     public float health_regen;
     public float bullet_damage;
     public float bullet_speed;
+    public float bullet_fire_rate;
     public float armor;
     public float speed;
     public float jumpForce;
