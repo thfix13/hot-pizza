@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-
+    public bool isP1;
     public int life;
     public float fullhealth;
     public float health;
     public float health_regen;
     public float bullet_damage;
     public float bullet_speed;
+    public float bullet_fire_rate;
     public float armor;
     public float speed;
     public float jumpForce;
     public GameObject deathParticlePrefab;
+    public GameObject movementParticlePrefab;
+    public GameObject attackParticlePrefab;
+    public GameObject defenseParticlePrefab;
     public bool canDoubleJump;
     public Vector2Int loadoutSelection;
     public float deathTime = 1f;
+    public AudioClip powerUpSound;
     private float deathTimeRemain;
     private int selector;
     private GameObject[] allBullets;
@@ -27,6 +32,9 @@ public class PlayerStatus : MonoBehaviour
         deathTimeRemain = 0;
         armor = 0;
         health_regen = 0;
+        if(isP1)loadoutSelection = Selection.P1selection;
+        else loadoutSelection = Selection.P2selection;
+        GetComponent<AudioSource>().playOnAwake = false;
     }
 
     void Update()
@@ -35,7 +43,6 @@ public class PlayerStatus : MonoBehaviour
         if (health <= 0)
         {
             gameObject.SetActive(false);
-
             var deathParticles = (GameObject)Instantiate(
                 deathParticlePrefab,
                 gameObject.transform.position,
@@ -57,6 +64,8 @@ public class PlayerStatus : MonoBehaviour
             }
 
             gameObject.SetActive(true);
+            GetComponent<AudioSource>().clip = powerUpSound;
+            GetComponent<AudioSource>().Play();
         }
     }
 
@@ -67,9 +76,14 @@ public class PlayerStatus : MonoBehaviour
         else selector = loadoutSelection.y;
 
         //Movement power up
-        if (selector== 1)
+        if (selector == 1)
         {
-            switch (Random.Range(1, 2))
+            var movementParticles = (GameObject)Instantiate(
+                movementParticlePrefab,
+                gameObject.transform.position,
+                gameObject.transform.rotation);
+            movementParticles.transform.parent = gameObject.transform;
+            switch (Random.Range(1, 3))
             {
                 case 1:
                     //Increased jump height
@@ -86,7 +100,12 @@ public class PlayerStatus : MonoBehaviour
         //Attack power up
         else if (selector == 2)
         {
-            switch (Random.Range(1, 2))
+            var attackParticles = (GameObject)Instantiate(
+                attackParticlePrefab,
+                gameObject.transform.position,
+                gameObject.transform.rotation);
+            attackParticles.transform.parent = gameObject.transform;
+            switch (Random.Range(1, 3))
             {
                 case 1:
                     //Increased bullet damage
@@ -103,17 +122,22 @@ public class PlayerStatus : MonoBehaviour
         //Defense power up
         else
         {
-            switch (Random.Range(1, 2))
+            var defenseParticles = (GameObject)Instantiate(
+                defenseParticlePrefab,
+                gameObject.transform.position,
+                gameObject.transform.rotation);
+            defenseParticles.transform.parent = gameObject.transform;
+            switch (Random.Range(1, 3))
             {
                 case 1:
                     //Reduce damage received
                     Debug.Log("3,1", gameObject);
-                    armor = 10;
+                    armor += 5;
                     break;
                 case 2:
                     //Grants health regeneration
                     Debug.Log("3,2", gameObject);
-                    health_regen = 0.1f;
+                    health_regen += 0.1f;
                     break;
             }
         }

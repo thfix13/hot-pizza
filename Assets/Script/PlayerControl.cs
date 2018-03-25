@@ -14,12 +14,15 @@ public class PlayerControl : MonoBehaviour {
     [HideInInspector]
     public bool rightClick = false;
     [HideInInspector]
+    public bool shootClick = false;
+    [HideInInspector]
     public bool activated = true;
 
     //button define for this player
     public KeyCode jumpButton;
     public KeyCode leftButton;
     public KeyCode rightButton;
+    public KeyCode downButton;
     public KeyCode shootButton;
 
     //user define player values
@@ -30,8 +33,20 @@ public class PlayerControl : MonoBehaviour {
     //user define bullet values
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
+    public float bullet_rate_count;
 
+    public GameObject hitFXPrefab;
+
+    public AudioClip hitAudio;
+    public AudioClip shootAudio;
+    public AudioClip stepAudio;
+    public AudioClip jumpAudio;
     private bool grounded = false;
+
+    //public bool IsPlayerOne;
+    private bool falling = false;
+    private float fallTime = 0.0f;
+    private const float MIN_FALL_TIME = 0.3f;
 
     void Start()
     {
@@ -40,17 +55,15 @@ public class PlayerControl : MonoBehaviour {
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
         //getting the playerstatus 
         status = GetComponent<PlayerStatus>();
+        GetComponent<AudioSource>().playOnAwake = false;
+
+        bullet_rate_count = 0;
     }
 
     void Update()
     {
         if (activated)
         {
-            if (Input.GetKeyDown(shootButton))
-            {
-                Fire();
-            }
-
             //checking if player can jump
             if (Input.GetKeyDown(jumpButton))
             {
@@ -69,6 +82,9 @@ public class PlayerControl : MonoBehaviour {
             if (Input.GetKeyUp(leftButton)) leftClick = false;
             if (Input.GetKeyDown(rightButton)) rightClick = true;
             if (Input.GetKeyUp(rightButton)) rightClick = false;
+            if (Input.GetKeyDown(shootButton)) shootClick = true;
+            if (Input.GetKeyUp(shootButton)) shootClick = false;
+            
 
             if (leftClick)
             {
@@ -80,22 +96,62 @@ public class PlayerControl : MonoBehaviour {
                 faceLeft = false;
                 rb2d.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
+
+            // drop from platform
+            if (Input.GetKeyDown(downButton)) {
+                falling = true;
+                grounded = false;
+                jump = false;
+                gameObject.layer = 9;
+                fallTime = 0.0f;
+                fallTime += Time.deltaTime;
+            } else if (falling && fallTime < MIN_FALL_TIME) {
+                fallTime += Time.deltaTime;
+            } else if (falling) {
+                falling = false;
+                gameObject.layer = 8;
+                fallTime = 0.0f;
+            }
         }
     }
 
     void FixedUpdate()
     {
-        float moveHorizontal = 0;
-        if (leftClick) moveHorizontal--;
-        if (rightClick) moveHorizontal++;
+        //shooting depends on the fire rate
+        if (bullet_rate_count <= 0)
+        {
+            if (shootClick)
+            {
+                Fire();
+                bullet_rate_count = status.bullet_fire_rate;
+            }
+        }
+        else
+        {
+            bullet_rate_count -= Time.deltaTime;
+        }
 
+        float moveHorizontal = 0;
+        if (leftClick)
+        {
+            GetComponent<AudioSource>().clip = stepAudio;
+            GetComponent<AudioSource>().Play();
+            moveHorizontal--;
+        }
+            
+        if (rightClick)
+        {
+            GetComponent<AudioSource>().clip = stepAudio;
+            GetComponent<AudioSource>().Play();
+            moveHorizontal++;
+        }
         Vector2 movement = new Vector2(moveHorizontal * status.speed, rb2d.velocity.y);
         rb2d.velocity = movement;
 
         if (jump)
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, status.jumpForce));
-
+            GetComponent<AudioSource>().PlayOneShot(jumpAudio);
             jump = false;
             grounded = false;
         }
@@ -103,7 +159,7 @@ public class PlayerControl : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("platform") || other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("platform") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("ground"))
         {
             grounded = true;
             doubleJump = true;
@@ -115,6 +171,11 @@ public class PlayerControl : MonoBehaviour {
             {
                 status.health -= other.gameObject.GetComponent<BulletStatus>().bulletDamage;
                 Destroy(other.gameObject);
+                GetComponent<AudioSource>().PlayOneShot(hitAudio);
+                var hitFX = (GameObject)Instantiate(
+                    hitFXPrefab,
+                    gameObject.transform.position,
+                    gameObject.transform.rotation);
             }
         }
     }
@@ -125,7 +186,7 @@ public class PlayerControl : MonoBehaviour {
             bulletPrefab,
             bulletSpawn.position,
             bulletSpawn.rotation);
-
+        GetComponent<AudioSource>().PlayOneShot(shootAudio);
         float bulletVelocity;
         if (faceLeft)
             bulletVelocity = -status.bullet_speed;
