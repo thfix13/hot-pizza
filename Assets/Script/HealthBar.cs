@@ -5,10 +5,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 public class HealthBar : MonoBehaviour
 {
+    public GameObject button;
+    public GameObject CursorObject;
     public GameObject player1;
     public GameObject player2;
     public Vector2 pos1 = new Vector2(20, 40);
@@ -35,7 +35,7 @@ public class HealthBar : MonoBehaviour
         numLives2 = 3;
         boxSize = 25;
         boxGap = 30;
-        Debug.Log(PlayerPrefs.GetInt("player1Sel1").ToString()+" "+ PlayerPrefs.GetInt("player1Sel2").ToString()+" "+ PlayerPrefs.GetInt("player2Sel1").ToString()+" "+ PlayerPrefs.GetInt("player2Sel2").ToString());
+        Debug.Log(Selection.P1selection.x.ToString());
     }
 
     public void OnGUI()
@@ -82,9 +82,12 @@ public class HealthBar : MonoBehaviour
         gameOverPanel.SetActive(true);
         if (player1.GetComponent<PlayerStatus>().life <= 0)
         {
-            gameOverText.text = "Player 2 wins!";
+            gameOverText.text = "Player 2 wins! But do the Pepperoni?";
 
         }
-        else gameOverText.text = "Player 1 wins!";
+        else gameOverText.text = "Player 1 wins! But do the Pineapples?";
+        button.SetActive(true);
+        CursorObject.GetComponent<CursorScript>().Reenable();
     }
+   
 }

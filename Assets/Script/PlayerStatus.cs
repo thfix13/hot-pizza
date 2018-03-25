@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-    public bool isP1;
+
     public int life;
     public float fullhealth;
     public float health;
@@ -27,14 +27,12 @@ public class PlayerStatus : MonoBehaviour
         deathTimeRemain = 0;
         armor = 0;
         health_regen = 0;
-        if (isP1) loadoutSelection = new Vector2Int(PlayerPrefs.GetInt("player1Sel1"), PlayerPrefs.GetInt("player1Sel2"));
-        else loadoutSelection  = new Vector2Int(PlayerPrefs.GetInt("player2Sel1"), PlayerPrefs.GetInt("player2Sel2"));
+        loadoutSelection = Selection.P1selection;
     }
 
     void Update()
     {
         health += health_regen;
-        if (health > fullhealth) health = fullhealth;
         if (health <= 0)
         {
             gameObject.SetActive(false);
@@ -63,16 +61,16 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
-    private void AddPowerUp(int timesDead)
+    private void AddPowerUp(int a)
     {
         //To differentiate between first and second death
-        if (timesDead == 1) selector = loadoutSelection.x;
+        if (a == 1) selector = loadoutSelection.x;
         else selector = loadoutSelection.y;
 
         //Movement power up
-        if (selector == 1)
+        if (selector== 1)
         {
-            switch (Random.Range(1, 3))
+            switch (Random.Range(1, 2))
             {
                 case 1:
                     //Increased jump height
@@ -82,14 +80,14 @@ public class PlayerStatus : MonoBehaviour
                 case 2:
                     //Increased speed
                     Debug.Log("1,2", gameObject);
-                    speed *= 2f;
+                    speed *= 1.2f;
                     break;
             }
         }
         //Attack power up
         else if (selector == 2)
         {
-            switch (Random.Range(1, 3))
+            switch (Random.Range(1, 2))
             {
                 case 1:
                     //Increased bullet damage
@@ -106,17 +104,17 @@ public class PlayerStatus : MonoBehaviour
         //Defense power up
         else
         {
-            switch (Random.Range(1, 3))
+            switch (Random.Range(1, 2))
             {
                 case 1:
                     //Reduce damage received
                     Debug.Log("3,1", gameObject);
-                    armor += 3;
+                    armor = 10;
                     break;
                 case 2:
                     //Grants health regeneration
                     Debug.Log("3,2", gameObject);
-                    health_regen = 0.05f;
+                    health_regen = 0.1f;
                     break;
             }
         }

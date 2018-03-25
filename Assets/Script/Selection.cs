@@ -1,53 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Selection : MonoBehaviour {
+    public static Vector2Int P1selection;
+    private bool secondpress = false;
 
-    private bool secondpress1 = false;
-    private bool secondpress2 = false;
-
-    public void MovementButton1Press()
+    public void movementbuttonpress()
     {
-        if(!this.secondpress1) PlayerPrefs.SetInt("player1Sel1",1);
-        else PlayerPrefs.SetInt("player1Sel2", 1);
-        PlayerPrefs.Save();
-        this.secondpress1 = true;
+        if(!secondpress)P1selection.x = 1;
+        else P1selection.y = 1;
+        secondpress = true;
     }
-    public void AttackButton1Press()
+    public void attackbuttonpress()
     {
-        if (!secondpress1) PlayerPrefs.SetInt("player1Sel1", 2);
-        else PlayerPrefs.SetInt("player1Sel2", 2);
-        PlayerPrefs.Save();
-        secondpress1 = true;
+        if (!secondpress)P1selection.x = 2;
+        else P1selection.y = 2;
+        secondpress = true;
     }
-    public void DefenseButton1Press()
+    public void defensebuttonpress()
     {
-        if (!secondpress1) PlayerPrefs.SetInt("player1Sel1", 3);
-         else PlayerPrefs.SetInt("player1Sel2", 3);
-        PlayerPrefs.Save();
-        secondpress1 = true;
+        if (!secondpress)P1selection.x = 3;
+         else P1selection.y = 3;
+        secondpress = true;
     }
-    public void MovementButton2Press()
-    {
-        if (!secondpress2) PlayerPrefs.SetInt("player2Sel1", 1);
-        else PlayerPrefs.SetInt("player2Sel2", 1);
-        PlayerPrefs.Save();
-        secondpress2 = true;
-    }
-    public void AttackButton2Press()
-    {
-        if (!secondpress2) PlayerPrefs.SetInt("player2Sel1", 2);
-        else PlayerPrefs.SetInt("player2Sel2", 2);
-        PlayerPrefs.Save();
-        secondpress2 = true;
-    }
-    public void DefenseButton2Press()
-    {
-        if (!secondpress2) PlayerPrefs.SetInt("player2Sel1", 3);
-        else PlayerPrefs.SetInt("player2Sel2", 3);
-        PlayerPrefs.Save();
-        secondpress2 = true;
-    }
+  
 }
