@@ -8461,7 +8461,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Attack:\nIncreased bullet damage\t\tIncreased bullet speed\nMovement:\nIncreased
-    walking speed\t\tIncreas jumping height\nDefense:\nAdded damage reduction\t\tAdded
+    walking speed\t\tIncreased jumping height\nDefense:\nAdded damage reduction\t\tAdded
     regeneration factor"
 --- !u!222 &1326116916
 CanvasRenderer:

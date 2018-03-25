@@ -5,8 +5,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 public class HealthBar : MonoBehaviour
 {
+    public int roundNumber;
     public GameObject button;
     public GameObject CursorObject;
     public GameObject player1;
@@ -18,7 +21,8 @@ public class HealthBar : MonoBehaviour
     public UnityEngine.UI.Text gameOverText;
     public float boxSize;
     public float boxGap;
-
+    public GameObject roundPanel;
+    public Text roundText;
     private float barDisplay1; //current progress
     private float barDisplay2; //current progress
     private int numLives1;
@@ -28,6 +32,7 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
+        roundNumber = 1;
         gameOverPanel.SetActive(false);
         emptyTex = Texture2D.whiteTexture;
         fullTex = Texture2D.blackTexture;
@@ -35,7 +40,20 @@ public class HealthBar : MonoBehaviour
         numLives2 = 3;
         boxSize = 25;
         boxGap = 30;
-        Debug.Log(Selection.P1selection.x.ToString()+" "+Selection.P1selection.y.ToString()+" "+ Selection.P2selection.x.ToString()+" "+ Selection.P2selection.y.ToString());
+        //Debug.Log(Selection.P1selection.x.ToString()+" "+Selection.P1selection.y.ToString()+" "+ Selection.P2selection.x.ToString()+" "+ Selection.P2selection.y.ToString());
+        StartCoroutine(displayRound());
+    }
+
+    IEnumerator displayRound()
+    {
+        player1.GetComponent<PlayerControl>().activated = false;
+        player2.GetComponent<PlayerControl>().activated = false;
+        roundPanel.SetActive(true);
+        roundText.text = "Round " + roundNumber.ToString();
+        yield return new WaitForSeconds(2);
+        roundPanel.SetActive(false);
+        player1.GetComponent<PlayerControl>().activated = true;
+        player2.GetComponent<PlayerControl>().activated = true;
     }
 
     public void OnGUI()
@@ -69,9 +87,15 @@ public class HealthBar : MonoBehaviour
         numLives2 = player2.GetComponent<PlayerStatus>().life;
         if (player1) barDisplay1 = player1.GetComponent<PlayerStatus>().health / player1.GetComponent<PlayerStatus>().fullhealth;
         if (player2) barDisplay2 = player2.GetComponent<PlayerStatus>().health / player2.GetComponent<PlayerStatus>().fullhealth;
+        
         if (player1.GetComponent<PlayerStatus>().life <= 0 || player2.GetComponent<PlayerStatus>().life <= 0)
         {
             GameOver();
+        }
+        else if (barDisplay1 <= 0 || barDisplay2 <= 0)
+        {
+            roundNumber++;
+            StartCoroutine(displayRound());
         }
     }
 

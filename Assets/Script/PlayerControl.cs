@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour {
     [HideInInspector]
     public bool shootClick = false;
     [HideInInspector]
-    public bool activated = true;
+    public bool activated = false;
 
     //button define for this player
     public KeyCode jumpButton;
@@ -120,7 +120,7 @@ public class PlayerControl : MonoBehaviour {
         //shooting depends on the fire rate
         if (bullet_rate_count <= 0)
         {
-            if (shootClick)
+            if (shootClick && activated)
             {
                 Fire();
                 bullet_rate_count = status.bullet_fire_rate;

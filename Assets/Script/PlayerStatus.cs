@@ -15,6 +15,7 @@ public class PlayerStatus : MonoBehaviour
     public float armor;
     public float speed;
     public float jumpForce;
+    public GameObject enemy;
     public GameObject deathParticlePrefab;
     public GameObject movementParticlePrefab;
     public GameObject attackParticlePrefab;
@@ -44,6 +45,7 @@ public class PlayerStatus : MonoBehaviour
     void Update()
     {
         health += health_regen;
+        if (health > fullhealth) health = fullhealth;
         if (health <= 0)
         {
             gameObject.SetActive(false);
@@ -63,6 +65,7 @@ public class PlayerStatus : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = finalForm;
             }
             health = fullhealth;
+            enemy.GetComponent<PlayerStatus>().health = enemy.GetComponent<PlayerStatus>().fullhealth;
             allBullets = GameObject.FindGameObjectsWithTag("bullet");
             for (var i = 0; i < allBullets.Length; i++)
             {
@@ -121,7 +124,7 @@ public class PlayerStatus : MonoBehaviour
                 case 2:
                     //Increased bullet speed
                     Debug.Log("2,2", gameObject);
-                    bullet_speed *= 1.2f;
+                    bullet_speed *= 1.4f;
                     break;
             }
         }
@@ -147,6 +150,5 @@ public class PlayerStatus : MonoBehaviour
                     break;
             }
         }
-    }
-    
+    }    
 }
