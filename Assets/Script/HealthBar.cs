@@ -35,7 +35,7 @@ public class HealthBar : MonoBehaviour
         numLives2 = 3;
         boxSize = 25;
         boxGap = 30;
-        Debug.Log(Selection.P1selection.x.ToString());
+        Debug.Log(Selection.P1selection.x.ToString()+" "+Selection.P1selection.y.ToString()+" "+ Selection.P2selection.x.ToString()+" "+ Selection.P2selection.y.ToString());
     }
 
     public void OnGUI()

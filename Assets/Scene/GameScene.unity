@@ -524,6 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6194955825b03429a49d161e6a2d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isP1: 0
   life: 3
   fullhealth: 100
   health: 100
@@ -534,6 +535,12 @@ MonoBehaviour:
   speed: 10
   jumpForce: 1500
   deathParticlePrefab: {fileID: 1084096300711396, guid: b890fc5076808ad4da093e91ebe7c948,
+    type: 2}
+  movementParticlePrefab: {fileID: 1241517291017156, guid: 4d2951cbbac76c044824c837d7ac7484,
+    type: 2}
+  attackParticlePrefab: {fileID: 1241517291017156, guid: 8f9dfa226f199ed40b3f3b907b1c8703,
+    type: 2}
+  defenseParticlePrefab: {fileID: 1241517291017156, guid: 817bb88987504d744b06e610162ac204,
     type: 2}
   canDoubleJump: 0
   loadoutSelection: {x: 0, y: 0}
@@ -1016,6 +1023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6194955825b03429a49d161e6a2d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isP1: 1
   life: 3
   fullhealth: 100
   health: 100
@@ -1026,6 +1034,12 @@ MonoBehaviour:
   speed: 10
   jumpForce: 1500
   deathParticlePrefab: {fileID: 1084096300711396, guid: b890fc5076808ad4da093e91ebe7c948,
+    type: 2}
+  movementParticlePrefab: {fileID: 1241517291017156, guid: 4d2951cbbac76c044824c837d7ac7484,
+    type: 2}
+  attackParticlePrefab: {fileID: 1241517291017156, guid: 8f9dfa226f199ed40b3f3b907b1c8703,
+    type: 2}
+  defenseParticlePrefab: {fileID: 1241517291017156, guid: 817bb88987504d744b06e610162ac204,
     type: 2}
   canDoubleJump: 0
   loadoutSelection: {x: 0, y: 0}
