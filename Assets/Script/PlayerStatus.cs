@@ -27,6 +27,10 @@ public class PlayerStatus : MonoBehaviour
     private int selector;
     private GameObject[] allBullets;
 
+    public Sprite firstForm;
+    public Sprite secondForm;
+    public Sprite finalForm;
+
     void Awake()
     {
         deathTimeRemain = 0;
@@ -51,10 +55,12 @@ public class PlayerStatus : MonoBehaviour
             if(life==2)
             {
                 AddPowerUp(1);
+                GetComponent<SpriteRenderer>().sprite = secondForm;
             }
             if(life==1)
             {
                 AddPowerUp(2);
+                GetComponent<SpriteRenderer>().sprite = finalForm;
             }
             health = fullhealth;
             allBullets = GameObject.FindGameObjectsWithTag("bullet");
