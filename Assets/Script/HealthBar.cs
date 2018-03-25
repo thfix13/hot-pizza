@@ -129,7 +129,7 @@ public class HealthBar : MonoBehaviour
         }
         else gameOverText.text = "Player 1 wins! But do the Pineapples?";
         button.SetActive(true);
-        CursorObject.GetComponent<CursorScript>().Reenable();
+        Cursor.visible = true;
     }
    
 }

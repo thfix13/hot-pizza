@@ -85,7 +85,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1003198012940570}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f45c23bf83766c4eb55f4720f11c46e, type: 3}
   m_Name: 
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 0
   lifespan: 0
+  rpm: 60
 --- !u!212 &212113106820914956
 SpriteRenderer:
   m_ObjectHideFlags: 1

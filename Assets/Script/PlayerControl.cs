@@ -47,7 +47,7 @@ public class PlayerControl : MonoBehaviour {
     //public bool IsPlayerOne;
     private bool falling = false;
     private float fallTime = 0.0f;
-    private const float MIN_FALL_TIME = 0.3f;
+    private const float MIN_FALL_TIME = 0.4f;
 
     void Start()
     {

@@ -28,6 +28,8 @@ public class PlayerStatus : MonoBehaviour
     private int selector;
     private GameObject[] allBullets;
 
+    private const float HEALTH_REGEN_BONUS = 0.05f;
+
     public Sprite firstForm;
     public Sprite secondForm;
     public Sprite finalForm;
@@ -146,7 +148,7 @@ public class PlayerStatus : MonoBehaviour
                 case 2:
                     //Grants health regeneration
                     Debug.Log("3,2", gameObject);
-                    health_regen += 0.1f;
+                    health_regen += HEALTH_REGEN_BONUS;
                     break;
             }
         }
