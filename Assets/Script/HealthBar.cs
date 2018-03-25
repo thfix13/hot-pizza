@@ -1,5 +1,6 @@
 ﻿/* taken from
  * https://answers.unity.com/questions/11892/how-would-you-make-an-energy-bar-loading-progress.html
+ * https://forum.unity.com/threads/change-GUI-box-color.174609/
  */
 
 using System.Collections;
@@ -30,12 +31,29 @@ public class HealthBar : MonoBehaviour
     private Texture2D emptyTex;
     private Texture2D fullTex;
 
+    private Texture2D MakeTex(int width, int height, Color col)
+    {
+        Color[] pix = new Color[width * height];
+        for (int i = 0; i < pix.Length; ++i)
+        {
+            pix[i] = col;
+        }
+        Texture2D result = new Texture2D(width, height);
+        result.SetPixels(pix);
+        result.Apply();
+        return result;
+    }
+
     private void Start()
     {
+        barDisplay1 = 1;
+        barDisplay2 = 1;
         roundNumber = 1;
         gameOverPanel.SetActive(false);
-        emptyTex = Texture2D.whiteTexture;
-        fullTex = Texture2D.blackTexture;
+        /*emptyTex = Texture2D.whiteTexture;
+        fullTex = Texture2D.blackTexture;*/
+        emptyTex = MakeTex((int) (2*size.x), (int) size.y,Color.cyan);
+        fullTex = MakeTex((int) (2*size.x), (int) size.y, Color.red);
         numLives1 = 3;
         numLives2 = 3;
         boxSize = 25;
