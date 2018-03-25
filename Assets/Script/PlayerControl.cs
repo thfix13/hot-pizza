@@ -32,6 +32,8 @@ public class PlayerControl : MonoBehaviour {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
 
+    public GameObject hitFXPrefab;
+
     private bool grounded = false;
 
     //public bool IsPlayerOne;
@@ -137,6 +139,10 @@ public class PlayerControl : MonoBehaviour {
             {
                 status.health -= other.gameObject.GetComponent<BulletStatus>().bulletDamage;
                 Destroy(other.gameObject);
+                var hitFX = (GameObject)Instantiate(
+                    hitFXPrefab,
+                    gameObject.transform.position,
+                    gameObject.transform.rotation);
             }
         }
     }

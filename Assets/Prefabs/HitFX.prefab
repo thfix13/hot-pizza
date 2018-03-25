@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4656135006015788}
   - component: {fileID: 198401292416509954}
   - component: {fileID: 199798393076373428}
+  - component: {fileID: 114370695052149590}
   m_Layer: 0
   m_Name: HitFX
   m_TagString: Untagged
@@ -41,6 +42,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114370695052149590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1883505753414076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420e34d858e164e48bbe1786274c0b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198401292416509954
 ParticleSystem:
   m_ObjectHideFlags: 1

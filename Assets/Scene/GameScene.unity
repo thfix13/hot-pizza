@@ -457,6 +457,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1174754931447846, guid: 35b52be1ce55f4b4ebfef72905fd9f1d,
     type: 2}
   bulletSpawn: {fileID: 714215630}
+  hitFXPrefab: {fileID: 1883505753414076, guid: 6f434739d4bef084ca0d3a6c8d6490ee,
+    type: 2}
 --- !u!114 &622135879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,6 +949,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1180340491296396, guid: 11c605956de069541855414ddfc75449,
     type: 2}
   bulletSpawn: {fileID: 2035018255}
+  hitFXPrefab: {fileID: 1883505753414076, guid: 6f434739d4bef084ca0d3a6c8d6490ee,
+    type: 2}
 --- !u!114 &1096082397
 MonoBehaviour:
   m_ObjectHideFlags: 0
