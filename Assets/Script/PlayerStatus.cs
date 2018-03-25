@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-
+    public bool isP1;
     public int life;
     public float fullhealth;
     public float health;
@@ -15,6 +15,9 @@ public class PlayerStatus : MonoBehaviour
     public float speed;
     public float jumpForce;
     public GameObject deathParticlePrefab;
+    public GameObject movementParticlePrefab;
+    public GameObject attackParticlePrefab;
+    public GameObject defenseParticlePrefab;
     public bool canDoubleJump;
     public Vector2Int loadoutSelection;
     public float deathTime = 1f;
@@ -27,7 +30,8 @@ public class PlayerStatus : MonoBehaviour
         deathTimeRemain = 0;
         armor = 0;
         health_regen = 0;
-        loadoutSelection = Selection.P1selection;
+        if(isP1)loadoutSelection = Selection.P1selection;
+        else loadoutSelection = Selection.P2selection;
     }
 
     void Update()
@@ -70,6 +74,11 @@ public class PlayerStatus : MonoBehaviour
         //Movement power up
         if (selector == 1)
         {
+            var movementParticles = (GameObject)Instantiate(
+                movementParticlePrefab,
+                gameObject.transform.position,
+                gameObject.transform.rotation);
+            movementParticles.transform.parent = gameObject.transform;
             switch (Random.Range(1, 3))
             {
                 case 1:
@@ -87,6 +96,11 @@ public class PlayerStatus : MonoBehaviour
         //Attack power up
         else if (selector == 2)
         {
+            var attackParticles = (GameObject)Instantiate(
+                attackParticlePrefab,
+                gameObject.transform.position,
+                gameObject.transform.rotation);
+            attackParticles.transform.parent = gameObject.transform;
             switch (Random.Range(1, 3))
             {
                 case 1:
@@ -104,17 +118,22 @@ public class PlayerStatus : MonoBehaviour
         //Defense power up
         else
         {
+            var defenseParticles = (GameObject)Instantiate(
+                defenseParticlePrefab,
+                gameObject.transform.position,
+                gameObject.transform.rotation);
+            defenseParticles.transform.parent = gameObject.transform;
             switch (Random.Range(1, 3))
             {
                 case 1:
                     //Reduce damage received
                     Debug.Log("3,1", gameObject);
-                    armor = 10;
+                    armor += 5;
                     break;
                 case 2:
                     //Grants health regeneration
                     Debug.Log("3,2", gameObject);
-                    health_regen = 0.1f;
+                    health_regen += 0.1f;
                     break;
             }
         }
