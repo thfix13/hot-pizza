@@ -194,6 +194,9 @@
     <Reference Include="UnityEngine.WindModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
     </Reference>
+    <Reference Include="Facebook.Unity.Settings">
+      <HintPath>Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -251,11 +254,13 @@
     <Compile Include="Assets\Script\PlayerStatus.cs" />
     <Compile Include="Assets\Script\SceneController.cs" />
     <Compile Include="Assets\Script\SceneController2.cs" />
+    <Compile Include="Assets\Script\SceneController3.cs" />
     <Compile Include="Assets\Script\Selection.cs" />
     <Compile Include="Assets\Script\TwoPlayerCamera.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Cartoon Particles -  Fire &amp; Smoke (Free)\Fonts\Lecompte\Lecompte.fnt" />
+    <None Include="Assets\DownloadedAssets\drive-download-20180324T023442Z-001\Sources.txt" />
     <None Include="Assets\ProjectSettings\ProjectVersion.txt" />
     <None Include="Assets\UnMerge\randomstuff.txt" />
   </ItemGroup>

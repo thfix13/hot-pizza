@@ -68,9 +68,9 @@ public class PlayerStatus : MonoBehaviour
         else selector = loadoutSelection.y;
 
         //Movement power up
-        if (selector== 1)
+        if (selector == 1)
         {
-            switch (Random.Range(1, 2))
+            switch (Random.Range(1, 3))
             {
                 case 1:
                     //Increased jump height
@@ -87,7 +87,7 @@ public class PlayerStatus : MonoBehaviour
         //Attack power up
         else if (selector == 2)
         {
-            switch (Random.Range(1, 2))
+            switch (Random.Range(1, 3))
             {
                 case 1:
                     //Increased bullet damage
@@ -104,7 +104,7 @@ public class PlayerStatus : MonoBehaviour
         //Defense power up
         else
         {
-            switch (Random.Range(1, 2))
+            switch (Random.Range(1, 3))
             {
                 case 1:
                     //Reduce damage received
