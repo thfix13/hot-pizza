@@ -713,6 +713,9 @@ MonoBehaviour:
   loadoutSelection: {x: 0, y: 0}
   deathTime: 1
   powerUpSound: {fileID: 8300000, guid: 370c792606478c540af6d2a84e5312db, type: 3}
+  firstForm: {fileID: 21300000, guid: 933a70196f5c4134f80098d42352919a, type: 3}
+  secondForm: {fileID: 21300000, guid: 4a5c1171ad26b834eba14a10dee57060, type: 3}
+  finalForm: {fileID: 21300000, guid: 87a9c246e35319c4bbf81b8f4a2c08bf, type: 3}
 --- !u!82 &622135880
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1299,6 +1302,9 @@ MonoBehaviour:
   loadoutSelection: {x: 0, y: 0}
   deathTime: 1
   powerUpSound: {fileID: 8300000, guid: 370c792606478c540af6d2a84e5312db, type: 3}
+  firstForm: {fileID: 21300000, guid: 4d5a0700941744938bacbbeb3d1d2fef, type: 3}
+  secondForm: {fileID: 21300000, guid: a88cd894c28083644a8fb4028aa821fc, type: 3}
+  finalForm: {fileID: 21300000, guid: 833055ff6aa76c04a93252f289f0dc87, type: 3}
 --- !u!82 &1096082398
 AudioSource:
   m_ObjectHideFlags: 0
