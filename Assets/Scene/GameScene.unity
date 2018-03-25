@@ -533,7 +533,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.102941155, g: 0.102941155, b: 0.102941155, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -589,6 +589,10 @@ MonoBehaviour:
   mainCam: {fileID: 625310529}
   minSizeY: 5
   padding: 5
+  minXCoord: -30
+  maxXCoord: 30
+  minYCoord: -5
+  maxYCoord: 50
   dampTime: 0.5
 --- !u!1001 &668765650
 Prefab:
