@@ -9,4 +9,10 @@ public class CursorScript : MonoBehaviour
         //Set Cursor to not be visible
         Cursor.visible = false;
     }
-}
+
+    public void Reenable()
+    {
+        Cursor.visible = true;
+    }
+    }
+    
