@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    public GameObject canvas;
+
     private void Awake()
     {
         Cursor.visible = true;
@@ -18,6 +20,7 @@ public class SceneController : MonoBehaviour
     {
         GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(1);
+        Destroy(canvas);
         SceneManager.LoadScene("HotPizzaLoadout");
     }
 }

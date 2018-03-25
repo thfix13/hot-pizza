@@ -5650,14 +5650,14 @@ Camera:
   m_GameObject: {fileID: 1238471068}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.05
     width: 1
-    height: 1
+    height: 0.8
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
