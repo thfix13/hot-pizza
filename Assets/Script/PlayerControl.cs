@@ -136,7 +136,7 @@ public class PlayerControl : MonoBehaviour {
         {
             if (other.gameObject.name.Substring(0, 8) != bulletPrefab.name.Substring(0, 8))
             {
-                status.health -= other.gameObject.GetComponent<BulletStatus>().bulletDamage;
+                status.health -= (other.gameObject.GetComponent<BulletStatus>().bulletDamage-GetComponent<PlayerStatus>().armor);
                 Destroy(other.gameObject);
             }
         }

@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthBar : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class HealthBar : MonoBehaviour
         numLives2 = 3;
         boxSize = 25;
         boxGap = 30;
-        Debug.Log(Selection.P1selection.x.ToString());
+        Debug.Log(PlayerPrefs.GetInt("player1Sel1").ToString()+" "+ PlayerPrefs.GetInt("player1Sel2").ToString()+" "+ PlayerPrefs.GetInt("player2Sel1").ToString()+" "+ PlayerPrefs.GetInt("player2Sel2").ToString());
     }
 
     public void OnGUI()
