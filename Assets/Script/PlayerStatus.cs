@@ -21,6 +21,7 @@ public class PlayerStatus : MonoBehaviour
     public bool canDoubleJump;
     public Vector2Int loadoutSelection;
     public float deathTime = 1f;
+    public AudioClip powerUpSound;
     private float deathTimeRemain;
     private int selector;
     private GameObject[] allBullets;
@@ -32,6 +33,7 @@ public class PlayerStatus : MonoBehaviour
         health_regen = 0;
         if(isP1)loadoutSelection = Selection.P1selection;
         else loadoutSelection = Selection.P2selection;
+        GetComponent<AudioSource>().playOnAwake = false;
     }
 
     void Update()
@@ -40,7 +42,6 @@ public class PlayerStatus : MonoBehaviour
         if (health <= 0)
         {
             gameObject.SetActive(false);
-
             var deathParticles = (GameObject)Instantiate(
                 deathParticlePrefab,
                 gameObject.transform.position,
@@ -62,6 +63,8 @@ public class PlayerStatus : MonoBehaviour
             }
 
             gameObject.SetActive(true);
+            GetComponent<AudioSource>().clip = powerUpSound;
+            GetComponent<AudioSource>().Play();
         }
     }
 

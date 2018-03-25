@@ -35,6 +35,9 @@ public class PlayerControl : MonoBehaviour {
     public GameObject hitFXPrefab;
 
     public AudioClip hitAudio;
+    public AudioClip shootAudio;
+    public AudioClip stepAudio;
+    public AudioClip jumpAudio;
     private bool grounded = false;
 
     //public bool IsPlayerOne;
@@ -49,6 +52,7 @@ public class PlayerControl : MonoBehaviour {
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
         //getting the playerstatus 
         status = GetComponent<PlayerStatus>();
+        GetComponent<AudioSource>().playOnAwake = false;
     }
 
     void Update()
@@ -111,16 +115,26 @@ public class PlayerControl : MonoBehaviour {
     void FixedUpdate()
     {
         float moveHorizontal = 0;
-        if (leftClick) moveHorizontal--;
-        if (rightClick) moveHorizontal++;
-
+        if (leftClick)
+        {
+            GetComponent<AudioSource>().clip = stepAudio;
+            GetComponent<AudioSource>().Play();
+            moveHorizontal--;
+        }
+            
+        if (rightClick)
+        {
+            GetComponent<AudioSource>().clip = stepAudio;
+            GetComponent<AudioSource>().Play();
+            moveHorizontal++;
+        }
         Vector2 movement = new Vector2(moveHorizontal * status.speed, rb2d.velocity.y);
         rb2d.velocity = movement;
 
         if (jump)
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, status.jumpForce));
-
+            GetComponent<AudioSource>().PlayOneShot(jumpAudio);
             jump = false;
             grounded = false;
         }
@@ -140,7 +154,7 @@ public class PlayerControl : MonoBehaviour {
             {
                 status.health -= other.gameObject.GetComponent<BulletStatus>().bulletDamage;
                 Destroy(other.gameObject);
-
+                GetComponent<AudioSource>().PlayOneShot(hitAudio);
                 var hitFX = (GameObject)Instantiate(
                     hitFXPrefab,
                     gameObject.transform.position,
@@ -155,7 +169,7 @@ public class PlayerControl : MonoBehaviour {
             bulletPrefab,
             bulletSpawn.position,
             bulletSpawn.rotation);
-
+        GetComponent<AudioSource>().PlayOneShot(shootAudio);
         float bulletVelocity;
         if (faceLeft)
             bulletVelocity = -status.bullet_speed;
