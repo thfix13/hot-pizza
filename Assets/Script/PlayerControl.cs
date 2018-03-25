@@ -34,6 +34,7 @@ public class PlayerControl : MonoBehaviour {
 
     public GameObject hitFXPrefab;
 
+    public AudioClip hitAudio;
     private bool grounded = false;
 
     //public bool IsPlayerOne;
@@ -139,6 +140,7 @@ public class PlayerControl : MonoBehaviour {
             {
                 status.health -= other.gameObject.GetComponent<BulletStatus>().bulletDamage;
                 Destroy(other.gameObject);
+
                 var hitFX = (GameObject)Instantiate(
                     hitFXPrefab,
                     gameObject.transform.position,
