@@ -90,17 +90,16 @@ public class PlayerControl : MonoBehaviour {
             // drop from platform
             if (Input.GetKeyDown(downButton)) {
                 falling = true;
+                grounded = false;
+                jump = false;
                 gameObject.layer = 9;
-                //rb2d.simulated = false;
-                //rb2d.simulated = true;
+                fallTime = 0.0f;
                 fallTime += Time.deltaTime;
             } else if (falling && fallTime < MIN_FALL_TIME) {
                 fallTime += Time.deltaTime;
             } else if (falling) {
                 falling = false;
                 gameObject.layer = 8;
-                //rb2d.simulated = false;
-                //rb2d.simulated = true;
                 fallTime = 0.0f;
             }
         }
