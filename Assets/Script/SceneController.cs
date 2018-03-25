@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    private void Awake()
+    {
+        Cursor.visible = true;
+    }
+
     public void NextScene()
     {   
         StartCoroutine(MyCoroutine());

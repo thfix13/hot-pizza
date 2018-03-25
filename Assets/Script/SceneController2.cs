@@ -9,6 +9,10 @@ public class SceneController2: MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKey("escape"))
+        {
+            SceneManager.LoadScene("HotPizzaTitle");
+        }
         if (selectionObject.GetComponent<Selection>().IsReady())
         {
             button.SetActive(true);

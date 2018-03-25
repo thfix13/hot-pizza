@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scene/HotPizzaTitle.unity
+    guid: 5583f8ea22197314ca73b2c98d3b1168
+  - enabled: 1
+    path: Assets/Scene/HotPizzaLoadout.unity
+    guid: 407ec7bf10bdd19468aa09826474208b
+  - enabled: 1
+    path: Assets/Scene/GameScene.unity
+    guid: d161feace5704554a9a0cc9c243d598e
